@@ -1,0 +1,71 @@
+###############
+### Aliases ###
+###############
+
+# Typographic errors
+alias sl="ls"
+alias LS="ls"
+alias l="ls"
+
+# Fixed params
+alias ls="ls -h --color=auto"
+alias grep="grep --color=auto"
+alias ssh="ssh -X"
+
+# New commands
+alias ll="ls -l"
+
+alias open='gnome-open'
+alias ccat='pygmentize -O style=monokai -f console256 -g'
+
+alias dirsize='du -h -d 1 | sort -rh'
+alias filsize='du -ha -d 1 | sort -rh'
+
+alias emacs='TERM=xterm-256color emacs'
+alias jsonpp='python -mjson.tool'
+
+
+alias git-clean='git branch --merged | egrep -v "\*" | grep -v "master" | xargs -n1 git branch -d && git fetch --prune'
+alias w='workon'
+
+function cless() {
+    ccat "$1" | less -R
+}
+
+function mkcd() {
+    mkdir $1
+    cd $1
+}
+
+# Kill processes listening to argument port
+function killport() {
+    lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill
+}
+
+function whatbox() {
+    public_ip=`curl -s ifconfig.me`
+    if [ $public_ip = "193.248.48.101" ]
+    then
+	echo "livebox"
+    else
+        echo "bbox"
+    fi
+}
+
+# automatic workon when entering a directory with a .git subdir and with a name
+# matching one of the virtualenv names
+workon_virtualenv() {
+  if [ -e .git ]; then
+    current_dir="${PWD##*/}"
+    if [ -e $WORKON_HOME/$current_dir ]; then
+      deactivate >/dev/null 2>&1
+      source $WORKON_HOME/$current_dir/bin/activate
+    fi
+  fi
+}
+
+virtualenv_cd() {
+  cd "$@" && workon_virtualenv
+}
+
+alias cd="virtualenv_cd"

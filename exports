@@ -1,0 +1,6 @@
+export WORKON_HOME=~/code/envs
+export PIP_DOWNLOAD_CACHE=~/.pip/download_cache
+export PYTHONSTARTUP=~/.pythonstartup.py
+export EDITOR=/usr/bin/emacs
+export PATH=$PATH:$HOME/bin
+
