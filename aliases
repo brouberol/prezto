@@ -59,7 +59,7 @@ workon_virtualenv() {
     current_dir="${PWD##*/}"
     if [ -e $WORKON_HOME/$current_dir ]; then
       deactivate >/dev/null 2>&1
-      source $WORKON_HOME/$current_dir/bin/activate
+      workon $current_dir
     fi
   fi
 }
