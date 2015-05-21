@@ -40,14 +40,14 @@ function prompt_brouberol_setup {
   # %C: clean?
   # %A: ahead
   # %B behind
-  zstyle ':prezto:module:git:info:keys' format 'prompt' ' (%b:%c%D%C%A%B)'
+  zstyle ':prezto:module:git:info:keys' format 'prompt' ' (%b:%c%D%C%A%B) '
 
   # Virtualenv indicator
   zstyle ':prezto:module:python:info:virtualenv' format '[%F{yellow}%v%f] '
 
   # Define prompts.
-  PROMPT='%B%F{red}λ%f%b %B%F{yellow}%c%f%b $git_info[prompt] $python_info[virtualenv]'
-  # RPROMPT='[%D{%L:%M:%S %p}]'
+  PROMPT='%B%F{red}λ%f%b %B%F{yellow}%c%f%b $git_info[prompt]'
+  RPROMPT='$python_info[virtualenv][%D{%L:%M:%S %p}]'
 }
 
 prompt_brouberol_setup "$@"
