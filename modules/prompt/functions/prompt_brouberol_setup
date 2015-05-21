@@ -7,7 +7,10 @@ function prompt_brouberol_precmd {
   if (( $+functions[git-info] )); then
     git-info
   fi
-  python-info
+
+  if (( $+functions[python-info] )); then
+    python-info
+  fi
 }
 
 function prompt_brouberol_setup {
@@ -15,7 +18,7 @@ function prompt_brouberol_setup {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
-  # # Load required functions.
+  # Load required functions.
   autoload -Uz add-zsh-hook
 
   # Add hook for calling git-info before each command.
@@ -33,7 +36,7 @@ function prompt_brouberol_setup {
   zstyle ':prezto:module:git:info:clean' format ':%B%F{green}✓%f%b'
   # %b: branch name
   # %c: commit hash
-  # %D: direty?
+  # %D: dirty?
   # %C: clean?
   # %A: ahead
   # %B behind
