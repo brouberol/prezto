@@ -55,7 +55,7 @@ function whatbox() {
 # automatic workon when entering a directory with a .git subdir and with a name
 # matching one of the virtualenv names
 workon_virtualenv() {
-  if [ -e .git ]; then
+  if [ -e .git ] || [ -e ../.git ]; then
     current_dir="${PWD##*/}"
     if [ -e $WORKON_HOME/$current_dir ]; then
       deactivate >/dev/null 2>&1
